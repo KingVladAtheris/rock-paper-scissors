@@ -17,10 +17,18 @@ function getComputerChoice(){
 }
 
 // Get the human choice
-function getHumanChoice(){
-    let x = prompt("Enter: Rock, Paper, or Scissors:");
-    return x;
-}
+let humanChoice = "";
+const humanChoices = document.querySelectorAll(".rps");
+humanChoices.forEach(item => {
+    item.addEventListener("click", () => {
+        humanChoice = item.value;
+        playRound();
+    })
+});
+   
+//    let x = prompt("Enter: Rock, Paper, or Scissors:");
+//    return x;
+
 
 // Variables to keep track of score
 let humanScore = 0;
@@ -29,7 +37,7 @@ let computerScore = 0;
 // Game logic
 function playRound(){
     let x = getComputerChoice();
-    let y = getHumanChoice();
+    let y = humanChoice;
     let humanwins = true;
     let tie = false;
     if (x === "Rock" && y === "Paper"){
