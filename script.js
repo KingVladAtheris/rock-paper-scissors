@@ -34,6 +34,8 @@ let humanScore = 0;
 let computerScore = 0;
 let numberRounds = 0;
 const totalScore = document.querySelector("#score");
+const displayHumanScore = document.querySelector("#humanScore");
+const displayComputerScore = document.querySelector("#computerScore");
 
 // Game logic
 function playRound(){
@@ -41,7 +43,7 @@ function playRound(){
     let y = humanChoice;
     let humanwins = true;
     let tie = false;
-    if (numberRounds <= 5){
+    if (numberRounds < 5){
         if (x === "Rock" && y === "Paper"){
             humanwins = true;
             tie = false;
@@ -80,26 +82,37 @@ function playRound(){
         }
 
         if (tie){
-            totalScore.textContent = `Computer chose ${x}. It's a tie. Score is Human: ${humanScore} Computer: ${computerScore}`;
+            totalScore.textContent = `Computer chose ${x}. It's a tie.`;
+            displayHumanScore.textContent = `${humanScore}`;
+            displayComputerScore.textContent = `${computerScore}`;
         }
         else if (humanwins){
             humanScore += 1;
-            totalScore.textContent = `Computer chose ${x}. Human wins! Score is Human: ${humanScore} Computer: ${computerScore}`;
+            totalScore.textContent = `Computer chose ${x}. Human wins!`;
+            displayHumanScore.textContent = `${humanScore}`;
+            displayComputerScore.textContent = `${computerScore}`;
 
         }
         else {
             computerScore += 1;
-            totalScore.textContent = `Computer chose ${x}. Computer wins! Score is Human: ${humanScore} Computer: ${computerScore}`;
+            totalScore.textContent = `Computer chose ${x}. Computer wins!`;
+            displayHumanScore.textContent = `${humanScore}`;
+            displayComputerScore.textContent = `${computerScore}`;
+
         }
         numberRounds += 1;
     }
-    else {
+    if (numberRounds === 5) {
         if (humanScore > computerScore){
             totalScore.textContent = `Game Over. Human Wins! Final score: Human: ${humanScore} Computer: ${computerScore}`;
         }
-        else {
+        else if (humanScore < computerScore){
             totalScore.textContent = `Game Over. Computer Wins! Final score: Human: ${humanScore} Computer: ${computerScore}`;
         }
+        else{
+            totalScore.textContent = `Game Over. It's a tie! Final score: Human: ${humanScore} Computer: ${computerScore}`;
+        }
+        return;
     }
 
 
