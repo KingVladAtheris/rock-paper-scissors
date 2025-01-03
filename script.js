@@ -120,3 +120,16 @@ function playRound(){
 
 
 }
+
+//Reset Function
+function resetGame(){
+    humanScore = 0;
+    computerScore = 0;
+    numberRounds = 0;
+    displayHumanScore.textContent = "0";
+    displayComputerScore.textContent = "0";
+    totalScore.textContent = ""
+}
+
+const resetButton = document.querySelector("#resetButton");
+resetButton.addEventListener("click", resetGame);
