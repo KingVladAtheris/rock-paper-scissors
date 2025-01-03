@@ -32,6 +32,7 @@ humanChoices.forEach(item => {
 // Variables to keep track of score
 let humanScore = 0;
 let computerScore = 0;
+let numberRounds = 0;
 const totalScore = document.querySelector("#score");
 
 // Game logic
@@ -40,54 +41,65 @@ function playRound(){
     let y = humanChoice;
     let humanwins = true;
     let tie = false;
-    if (x === "Rock" && y === "Paper"){
-        humanwins = true;
-        tie = false;
-    }
-    else if(x === "Rock" && y === "Rock"){
-        humanwins = false;
-        tie = true;
-    }
-    else if(x === "Rock" && y === "Scissors"){
-        humanwins = false;
-        tie = false;
-    }
-    else if(x === "Paper" && y === "Paper"){
-        humanwins = false;
-        tie = true;
-    }
-    else if(x === "Paper" && y === "Rock"){
-        humanwins = false;
-        tie = false;
-    }
-    else if(x === "Paper" && y === "Scissors"){
-        humanwins = true;
-        tie = false;
-    }
-    else if(x === "Scissors" && y === "Rock"){
-        humanwins = true;
-        tie = false;
-    }
-    else if(x === "Scissors" && y === "Paper"){
-        humanwins = false;
-        tie = false;
-    }
-    else if(x === "Scissors" && y === "Scissors"){
-        humanwins = false;
-        tie = true;
-    }
+    if (numberRounds <= 5){
+        if (x === "Rock" && y === "Paper"){
+            humanwins = true;
+            tie = false;
+        }
+        else if(x === "Rock" && y === "Rock"){
+            humanwins = false;
+            tie = true;
+        }
+        else if(x === "Rock" && y === "Scissors"){
+            humanwins = false;
+            tie = false;
+        }
+        else if(x === "Paper" && y === "Paper"){
+            humanwins = false;
+            tie = true;
+        }
+        else if(x === "Paper" && y === "Rock"){
+            humanwins = false;
+            tie = false;
+        }
+        else if(x === "Paper" && y === "Scissors"){
+            humanwins = true;
+            tie = false;
+        }
+        else if(x === "Scissors" && y === "Rock"){
+            humanwins = true;
+            tie = false;
+        }
+        else if(x === "Scissors" && y === "Paper"){
+            humanwins = false;
+            tie = false;
+        }
+        else if(x === "Scissors" && y === "Scissors"){
+            humanwins = false;
+            tie = true;
+        }
 
-    if (tie){
-        totalScore.textContent = `It's a tie. Score is Human: ${humanScore} Computer: ${computerScore}`;
-    }
-    else if (humanwins){
-        humanScore += 1;
-        totalScore.textContent = `Human wins! Score is Human: ${humanScore} Computer: ${computerScore}`;
+        if (tie){
+            totalScore.textContent = `Computer chose ${x}. It's a tie. Score is Human: ${humanScore} Computer: ${computerScore}`;
+        }
+        else if (humanwins){
+            humanScore += 1;
+            totalScore.textContent = `Computer chose ${x}. Human wins! Score is Human: ${humanScore} Computer: ${computerScore}`;
 
+        }
+        else {
+            computerScore += 1;
+            totalScore.textContent = `Computer chose ${x}. Computer wins! Score is Human: ${humanScore} Computer: ${computerScore}`;
+        }
+        numberRounds += 1;
     }
     else {
-        computerScore += 1;
-        totalScore.textContent = `Computer wins! Score is Human: ${humanScore} Computer: ${computerScore}`;
+        if (humanScore > computerScore){
+            totalScore.textContent = `Game Over. Human Wins! Final score: Human: ${humanScore} Computer: ${computerScore}`;
+        }
+        else {
+            totalScore.textContent = `Game Over. Computer Wins! Final score: Human: ${humanScore} Computer: ${computerScore}`;
+        }
     }
 
 
