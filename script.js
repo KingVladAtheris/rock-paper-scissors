@@ -26,13 +26,13 @@ humanChoices.forEach(item => {
     })
 });
    
-//    let x = prompt("Enter: Rock, Paper, or Scissors:");
-//    return x;
+
 
 
 // Variables to keep track of score
 let humanScore = 0;
 let computerScore = 0;
+const totalScore = document.querySelector("#score");
 
 // Game logic
 function playRound(){
@@ -78,16 +78,16 @@ function playRound(){
     }
 
     if (tie){
-        alert(`It's a tie. Score is Human: ${humanScore} Computer: ${computerScore}`);
+        totalScore.textContent = `It's a tie. Score is Human: ${humanScore} Computer: ${computerScore}`;
     }
     else if (humanwins){
         humanScore += 1;
-        alert(`Human wins! Score is Human: ${humanScore} Computer: ${computerScore}`);
+        totalScore.textContent = `Human wins! Score is Human: ${humanScore} Computer: ${computerScore}`;
 
     }
     else {
         computerScore += 1;
-        alert(`Computer wins! Score is Human: ${humanScore} Computer: ${computerScore}`);
+        totalScore.textContent = `Computer wins! Score is Human: ${humanScore} Computer: ${computerScore}`;
     }
 
 
