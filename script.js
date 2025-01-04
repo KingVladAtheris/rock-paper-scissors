@@ -111,14 +111,16 @@ function playRound(){
            displayDemonScore.textContent = `${computerScore} :Demon`;
         }
         else if (humanwins){
+            humanScore+=1;
             displayHumanScore.textContent = `Human: ${humanScore}`;
            displayDemonScore.textContent = `${computerScore} :Demon`;
-           humanScore+=1;
+           
         }
         else {
+            computerScore+=1;
             displayHumanScore.textContent = `Human: ${humanScore}`;
            displayDemonScore.textContent = `${computerScore} :Demon`;
-           computerScore+=1;
+           
         }
 
         numberRounds += 1;
