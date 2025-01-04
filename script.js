@@ -1,10 +1,11 @@
 console.log("Hello");
 //Selecting all elements
 const roleplayBox = document.querySelector("#roleplay")
-const roleplayText = document.querySelector("#text");
+const roleplayText = document.querySelector(".text");
 const startGame = document.querySelector("#confirm");
 const humanTally = document.querySelector("#human-choice");
 const demonTally = document.querySelector("#demon-choice");
+const imageBlock = document.querySelector("#image");
 
 //Start game button
 startGame.addEventListener("click", () =>{
@@ -31,11 +32,19 @@ function playRound(){
     let humanwins = true;
     let tie = false;
     if (numberRounds < 5){
+        //Creating the elements for keeping track of score
         const displayHumanChoice = document.createElement("div");
         const displayComputerChoice = document.createElement("div");
+        const displayScore = document.createElement("div");
+        const displayHumanScore = document.createElement("div");
+        const displayDemonScore = document.createElement("div");
 
         displayHumanChoice.classList.add("choice");
         displayComputerChoice.classList.add("choice");
+        displayScore.classList.add("score");
+        displayHumanScore.classList.add("human");
+        displayDemonScore.classList.add("demon");
+
         if (x === "Rock" && y === "Paper"){
             displayHumanChoice.textContent = "Paper";
             displayComputerChoice.textContent = "Rock";
@@ -90,40 +99,59 @@ function playRound(){
             humanwins = false;
             tie = true;
         }
+        //Adding the elements that keep track of score
         humanTally.appendChild(displayHumanChoice);
         demonTally.appendChild(displayComputerChoice);
+        displayScore.appendChild(displayHumanScore);
+        displayScore.appendChild(displayDemonScore);
+        imageBlock.appendChild(displayScore);
 
         if (tie){
-            totalScore.textContent = `Computer chose ${x}. It's a tie.`;
-            displayHumanScore.textContent = `${humanScore}`;
-            displayComputerScore.textContent = `${computerScore}`;
+           displayHumanScore.textContent = `Human: ${humanScore}`;
+           displayDemonScore.textContent = `${computerScore} :Demon`;
         }
         else if (humanwins){
-            humanScore += 1;
-            totalScore.textContent = `Computer chose ${x}. Human wins!`;
-            displayHumanScore.textContent = `${humanScore}`;
-            displayComputerScore.textContent = `${computerScore}`;
+            displayHumanScore.textContent = `Human: ${humanScore}`;
+           displayDemonScore.textContent = `${computerScore} :Demon`;
+           humanScore+=1;
         }
         else {
-            computerScore += 1;
-            totalScore.textContent = `Computer chose ${x}. Computer wins!`;
-            displayHumanScore.textContent = `${humanScore}`;
-            displayComputerScore.textContent = `${computerScore}`;
+            displayHumanScore.textContent = `Human: ${humanScore}`;
+           displayDemonScore.textContent = `${computerScore} :Demon`;
+           computerScore+=1;
         }
 
         numberRounds += 1;
     }
-
+    //End result screen
     if (numberRounds === 5) {
+        choiceRock.remove();
+        choicePaper.remove();
+        choiceScissors.remove();
+         //Creating RP text
+         const roleplayTie = document.createElement("div");
+         const roleplayWin = document.createElement("div");
+         const roleplayLose = document.createElement("div");
+         roleplayTie.classList.add("text");
+         roleplayWin.classList.add("text");
+         roleplayLose.classList.add("text");
+         //Writing RP text
         if (humanScore > computerScore){
-            totalScore.textContent = `Game Over. Human Wins! Final score: Human: ${humanScore} Computer: ${computerScore}`;
+            roleplayWin.textContent = "Very good. You have earned yourself an extra year of life. Shall we play again?";
+            roleplayBox.appendChild(roleplayWin);
+            roleplayBox.appendChild(startGame);
         }
         else if (humanScore < computerScore){
-            totalScore.textContent = `Game Over. Computer Wins! Final score: Human: ${humanScore} Computer: ${computerScore}`;
+            roleplayLose.textContent = "Congratulations! One hundred years in Hell await. Care to try your luck again?";
+            roleplayBox.appendChild(roleplayLose);
+            roleplayBox.appendChild(startGame);
         }
         else{
-            totalScore.textContent = `Game Over. It's a tie! Final score: Human: ${humanScore} Computer: ${computerScore}`;
+            roleplayTie.textContent = "Hmph...It seems we are equally matched, human. Let's try and settle this, yes?";
+            roleplayBox.appendChild(roleplayTie);
+            roleplayBox.appendChild(startGame);
         }
+        
         return;
     }
 }
@@ -167,21 +195,6 @@ function getComputerChoice(){
     return y;
 }
 
-// Get the human choice
-//let humanChoice = "";
-//const humanChoices = document.querySelectorAll(".rps");
-//humanChoices.forEach(item => {
-//   item.addEventListener("click", () => {
-//        humanChoice = item.value;
-//        playRound();
-//    })
-//});
-
-
-
-   
-
-
 
 // Variables to keep track of score
 let humanScore = 0;
@@ -193,15 +206,4 @@ const displayComputerScore = document.querySelector("#computerScore");
 
 
 
-//Reset Function
-function resetGame(){
-    humanScore = 0;
-    computerScore = 0;
-    numberRounds = 0;
-    displayHumanScore.textContent = "0";
-    displayComputerScore.textContent = "0";
-    totalScore.textContent = ""
-}
 
-//const resetButton = document.querySelector("#resetButton");
-//resetButton.addEventListener("click", resetGame);

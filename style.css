@@ -78,7 +78,7 @@ body{
     flex-wrap: wrap;
     overflow: hidden;
 }
-#text{
+.text{
     height: 200;
     width: 1000px;
     text-align: center;
