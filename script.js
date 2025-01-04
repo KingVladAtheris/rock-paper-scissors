@@ -15,11 +15,11 @@ startGame.addEventListener("click", () =>{
     roleplayBox.appendChild(choiceRock);
     roleplayBox.appendChild(choicePaper);
     roleplayBox.appendChild(choiceScissors);
-
+    let humanChoice = "";
     const humanChoices = document.querySelectorAll(".roleplayrps");
     humanChoices.forEach(item => {
     item.addEventListener("click", () => {
-        let humanChoice = item.value;
+        humanChoice = item.value;
         playRound();
     });
 });
@@ -31,60 +31,67 @@ function playRound(){
     let humanwins = true;
     let tie = false;
     if (numberRounds < 5){
+        const displayHumanChoice = document.createElement("div");
+        const displayComputerChoice = document.createElement("div");
+
+        displayHumanChoice.classList.add("choice");
+        displayComputerChoice.classList.add("choice");
         if (x === "Rock" && y === "Paper"){
-            humanTally.appendChild(displayPaper);
-            demonTally.appendChild(displayRock);
+            displayHumanChoice.textContent = "Paper";
+            displayComputerChoice.textContent = "Rock";
             humanwins = true;
             tie = false;
         }
         else if(x === "Rock" && y === "Rock"){
-            humanTally.appendChild(displayRock);
-            demonTally.appendChild(displayRock);
+            displayHumanChoice.textContent = "Rock";
+            displayComputerChoice.textContent = "Rock";
             humanwins = false;
             tie = true;
         }
         else if(x === "Rock" && y === "Scissors"){
-            humanTally.appendChild(displayScissors);
-            demonTally.appendChild(displayRock);
+            displayHumanChoice.textContent = "Scissors";
+            displayComputerChoice.textContent = "Rock";
             humanwins = false;
             tie = false;
         }
         else if(x === "Paper" && y === "Paper"){
-            humanTally.appendChild(displayPaper);
-            demonTally.appendChild(displayPaper);
+            displayHumanChoice.textContent = "Paper";
+            displayComputerChoice.textContent = "Paper";
             humanwins = false;
             tie = true;
         }
         else if(x === "Paper" && y === "Rock"){
-            humanTally.appendChild(displayRock);
-            demonTally.appendChild(displayPaper);
+            displayHumanChoice.textContent = "Rock";
+            displayComputerChoice.textContent = "Paper";
             humanwins = false;
             tie = false;
         }
         else if(x === "Paper" && y === "Scissors"){
-            humanTally.appendChild(displayScissors);
-            demonTally.appendChild(displayPaper);
+            displayHumanChoice.textContent = "Scissors";
+            displayComputerChoice.textContent = "Paper";
             humanwins = true;
             tie = false;
         }
         else if(x === "Scissors" && y === "Rock"){
-            humanTally.appendChild(displayRock);
-            demonTally.appendChild(displayScissors);
+            displayHumanChoice.textContent = "Rock";
+            displayComputerChoice.textContent = "Scissors";
             humanwins = true;
             tie = false;
         }
         else if(x === "Scissors" && y === "Paper"){
-            humanTally.appendChild(displayPaper);
-            demonTally.appendChild(displayScissors);
+            displayHumanChoice.textContent = "Paper";
+            displayComputerChoice.textContent = "Scissors";
             humanwins = false;
             tie = false;
         }
         else if(x === "Scissors" && y === "Scissors"){
-            humanTally.appendChild(displayScissors);
-            demonTally.appendChild(displayScissors);
+            displayHumanChoice.textContent = "Scissors";
+            displayComputerChoice.textContent = "Scissors";
             humanwins = false;
             tie = true;
         }
+        humanTally.appendChild(displayHumanChoice);
+        demonTally.appendChild(displayComputerChoice);
 
         if (tie){
             totalScore.textContent = `Computer chose ${x}. It's a tie.`;
@@ -96,17 +103,17 @@ function playRound(){
             totalScore.textContent = `Computer chose ${x}. Human wins!`;
             displayHumanScore.textContent = `${humanScore}`;
             displayComputerScore.textContent = `${computerScore}`;
-
         }
         else {
             computerScore += 1;
             totalScore.textContent = `Computer chose ${x}. Computer wins!`;
             displayHumanScore.textContent = `${humanScore}`;
             displayComputerScore.textContent = `${computerScore}`;
-
         }
+
         numberRounds += 1;
     }
+
     if (numberRounds === 5) {
         if (humanScore > computerScore){
             totalScore.textContent = `Game Over. Human Wins! Final score: Human: ${humanScore} Computer: ${computerScore}`;
@@ -119,11 +126,6 @@ function playRound(){
         }
         return;
     }
-
-
-    
-
-
 }
 
 });
@@ -146,19 +148,6 @@ choiceScissors.value = "Scissors";
 choiceScissors.classList.add("roleplayrps");
 choiceScissors.textContent = "Scissors";
 choiceScissors.style.margin = "0px 10px";
-
-//Side display
-const displayRock = document.createElement("div");
-displayRock.classList.add("choice");
-displayRock.textContent = "Rock";
-
-const displayPaper = document.createElement("div");
-displayPaper.classList.add("choice");
-displayPaper.textContent = "Paper";
-
-const displayScissors = document.createElement("div");
-displayScissors.classList.add("choice");
-displayScissors.textContent = "Scissors";
 
 
 
