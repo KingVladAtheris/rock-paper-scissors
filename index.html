@@ -3,21 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rock Paper Scissors</title>
+    <title>Rock Paper Scissors Hell</title>
+    <link rel="stylesheet" href="style.css">
     <script src="script.js" defer></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pirata+One&family=UnifrakturMaguntia&display=swap');
+        </style>
 </head>
 <body>
-    <button class="rps" value="Rock">Rock</button>
-    <button class="rps" value="Paper">Paper</button>
-    <button class="rps" value="Scissors">Scissors</button>
-    <div>Result</div>
-    <div>Human vs Computer</div>
-    <div style="display: flex;">
-        <div id="humanScore">0</div>
-        <div>-</div>
-        <div id="computerScore">0</div>
+    <div id="top-part">
+        <div id="human-choice">
+            <div style="font-family: 'Pirata One', serif; font-size: 20px;">Human Choice</div>
+            <div class="stylish-line"></div>
+            
+        </div>
+        <div id="image">
+            <img style="display: block; position: relative; z-index: 0;" src="crossroadsdemon.png" alt="">
+            <div id="story">Racked by disease and desperate to live you have summoned a crossroads demon. He offers you a wager.</div>
+            <div class="score">
+            </div>
+        </div>
+        <div id="demon-choice">
+            <div style="font-family: 'Pirata One', serif; font-size: 20px;">Demon Choice</div>
+            <div class="stylish-line"></div>
+        </div>
     </div>
-    <div id="score"></div>
-    <button id="resetButton">Reset Game</button>
+    <div id="bottom-part">
+        <div id="roleplay">
+            <div id="text">
+                One extra year on Earth against one hundred years in Hell. The game: Rock, Paper, Scissors. Best out of five. <br>Deal?
+            </div>
+            <button id="confirm">Yes</button>
+        </div>
+    </div>
 </body>
 </html>

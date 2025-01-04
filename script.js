@@ -1,4 +1,51 @@
 console.log("Hello");
+//Start game button
+const roleplayBox = document.querySelector("#roleplay")
+const roleplayText = document.querySelector("#text");
+const startGame = document.querySelector("#confirm");
+startGame.addEventListener("click", () =>{
+    roleplayText.remove();
+    startGame.remove();
+    roleplayBox.style.flexDirection = "row";
+    roleplayBox.style.justifyContent = "space-between";
+    roleplayBox.appendChild(choiceRock);
+    roleplayBox.appendChild(choicePaper);
+    roleplayBox.appendChild(choiceScissors);
+})
+
+//Rock, Paper, Schissors Buttons
+const choiceRock = document.createElement("button")
+choiceRock.value = "Rock";
+choiceRock.classList.add("roleplayrps");
+choiceRock.textContent = "Rock";
+choiceRock.style.margin = "0px 10px";
+
+const choicePaper = document.createElement("button")
+choicePaper.value = "Paper";
+choicePaper.classList.add("roleplayrps");
+choicePaper.textContent = "Paper";
+choicePaper.style.margin = "0px 10px";
+
+const choiceScissors = document.createElement("button")
+choiceScissors.value = "Scissors";
+choiceScissors.classList.add("roleplayrps");
+choiceScissors.textContent = "Scissors";
+choiceScissors.style.margin = "0px 10px";
+
+//Side display
+const displayRock = document.createElement("div");
+displayRock.classList.add("choice");
+displayRock.textContent = "Rock";
+
+const displayPaper = document.createElement("div");
+displayPaper.classList.add("choice");
+displayPaper.textContent = "Paper";
+
+const displayScissors = document.createElement("div");
+displayScissors.classList.add("choice");
+displayScissors.textContent = "Scissors";
+
+
 
 // Get the computer choice
 function getComputerChoice(){
@@ -17,12 +64,21 @@ function getComputerChoice(){
 }
 
 // Get the human choice
+//let humanChoice = "";
+//const humanChoices = document.querySelectorAll(".rps");
+//humanChoices.forEach(item => {
+//   item.addEventListener("click", () => {
+//        humanChoice = item.value;
+//        playRound();
+//    })
+//});
+
 let humanChoice = "";
-const humanChoices = document.querySelectorAll(".rps");
+const humanChoices = document.querySelectorAll(".roleplayrps");
 humanChoices.forEach(item => {
     item.addEventListener("click", () => {
         humanChoice = item.value;
-        playRound();
+        alert(humanChoice);
     })
 });
    
@@ -131,5 +187,5 @@ function resetGame(){
     totalScore.textContent = ""
 }
 
-const resetButton = document.querySelector("#resetButton");
-resetButton.addEventListener("click", resetGame);
+//const resetButton = document.querySelector("#resetButton");
+//resetButton.addEventListener("click", resetGame);
